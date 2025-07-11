@@ -5,6 +5,10 @@ plugins {
 group = 'org.command.system'
 version = '1.0-SNAPSHOT'
 
+java.toolchain {
+    languageVersion.set(JavaLanguageVersion.of(21))
+}
+
 dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.38'
