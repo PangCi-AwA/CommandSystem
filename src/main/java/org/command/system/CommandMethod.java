@@ -28,6 +28,11 @@ public class CommandMethod {
         this.permission = null;
     }
 
+    public boolean hasPermission(CommandSender sender) {
+        if (this.permission == null || this.permission.isEmpty()) return true;
+        return sender.hasPermission(this.permission);
+    }
+
     public boolean isMatch(String alias, String[] args) {
         if (this.alias != null && !this.alias.equalsIgnoreCase(alias)) return false;
         if (args.length != templates.length) return false;

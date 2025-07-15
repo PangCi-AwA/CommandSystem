@@ -32,7 +32,7 @@ public class CommandRegistry implements CommandExecutor, TabExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String l, @NotNull String[] args) {
         if (this.permission != null && !sender.hasPermission(this.permission)) return true;
         CommandMethod method = findMethod(l, args);
-        if (method == null) return true;
+        if (method == null || !method.hasPermission(sender)) return true;
         CommandArgs commandArgs = method.buildArgs(args);
         try {
             method.invokeExecute(sender, commandArgs);
@@ -48,6 +48,7 @@ public class CommandRegistry implements CommandExecutor, TabExecutor {
         if (this.permission != null && !sender.hasPermission(this.permission)) return List.of();
         List<String> result = new ArrayList<>();
         for (CommandMethod method : this.methods) {
+            if (!method.hasPermission(sender)) continue;
             String s = method.matchTab(l, args);
             if (s != null) {
                 if (s.startsWith("<player:")) {
