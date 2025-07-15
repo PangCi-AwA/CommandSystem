@@ -16,6 +16,22 @@
 
 ## 🔧 快速开始
 
+### 🚀 配置Gradle
+
+```groovy
+// 添加 JitPack 仓库
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+// 添加依赖
+dependencies {
+    implementation 'com.github.PangCi-AwA:CommandSystem:1.0.1'
+}
+```
+
+---
+
 ### 🛠 注册命令处理器
 
 ```java
